@@ -1,0 +1,6 @@
+# Required libraries for Relative Humidity Forecasting project
+
+"zenml[server]"
+scikit-learn==1.2.2  # or the latest version
+pandas==1.5.3 # or the latest version
+numpy==1.23.5 # or the latest version
