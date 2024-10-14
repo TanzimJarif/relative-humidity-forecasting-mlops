@@ -100,6 +100,20 @@ Ensure the dataset is available at the specified path in the configuration file.
 
 ### Execute the pipeline:
 
+Before running the pipeline, initiate ZenML using the following command:
+
+```bash
+zenml init
+```
+
+To start the ZenML server, run:
+
+```bash
+zenml up --blocking
+```
+
+Now the pipeline is ready to be executed.
+
 ```bash
 python run_pipeline.py
 ```
