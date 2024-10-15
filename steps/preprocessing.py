@@ -6,7 +6,7 @@ from zenml import step
 
 from typing import Annotated, Tuple
 
-from src.data_cleanng import CleanData
+from src.data_cleaning import CleanData
 
 from .config import PreprocesserConfig
 
