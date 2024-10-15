@@ -27,4 +27,4 @@ class DataConfig(BaseParameters):
     """
     Dataset Configuration
     """
-    data_path: str = "D:\Projects\Forecasting Relative Humidity\data\Met dataset - 2015-to-2022_12months.csv"
+    data_path: str = "D:\Projects\\relative-humidity-forecasting-mlops\data\Met dataset - 2015-to-2022_12months.csv"
