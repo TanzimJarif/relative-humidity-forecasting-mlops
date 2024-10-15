@@ -17,7 +17,7 @@ from sklearn.neural_network import MLPRegressor
 from src.model_testing import RMSEEvaluation, R2Evaluation, MAEEvaluation
 
 
-experiment_tracker = Client().activate_stack.experiment_tracker
+experiment_tracker = Client().active_stack.experiment_tracker
 
 @step(experiment_tracker = experiment_tracker.name)
 def evaluate_model(
