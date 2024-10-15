@@ -1,8 +1,12 @@
+import mlflow
+
 import logging
 
 import pandas as pd
 
 from zenml import step
+
+from zenml.client import Client
 
 from src.model_training import MLPmodel
 
@@ -11,7 +15,9 @@ from .config import ModelParameterConfig
 from sklearn.neural_network import MLPRegressor
 
 
-@step
+experiment_tracker = Client().activate_stack.experiment_tracker
+
+@step(experiment_tracker = experiment_tracker.name)
 def train_model(
     X_train: pd.DataFrame, 
     y_train: pd.Series, 
@@ -31,6 +37,9 @@ def train_model(
     try:
         # Log the start of the model training process
         logging.info(f"Training {config.name} model...")
+
+        #logging the model
+        mlflow.sklearn.autolog()
 
         # Initialize the MLPmodel class and train the model with the specified configuration
         mlp = MLPmodel()
