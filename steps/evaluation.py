@@ -1,8 +1,12 @@
+import mlflow
+
 import logging
 
 import pandas as pd
 
 from zenml import step
+
+from zenml.client import Client
 
 from typing import Annotated, Tuple
 
@@ -13,7 +17,9 @@ from sklearn.neural_network import MLPRegressor
 from src.model_testing import RMSEEvaluation, R2Evaluation, MAEEvaluation
 
 
-@step
+experiment_tracker = Client().activate_stack.experiment_tracker
+
+@step(experiment_tracker = experiment_tracker.name)
 def evaluate_model(
     model: MLPRegressor, 
     X_test: pd.DataFrame, 
@@ -44,21 +50,24 @@ def evaluate_model(
     try:
         logging.info(f"Evaluating {config.name} model...")
 
-        # Generate predictions using the test data
+        # generating predictions using the test data
         y_pred = model.predict(X_test)
 
-        # Calculate RMSE (Root Mean Squared Error)
+        # calculating and logging RMSE (Root Mean Squared Error)
         rmse = RMSEEvaluation().calculate_score(y_test, y_pred)
+        mlflow.log_metric("rmse", rmse)
 
-        # Calculate R² (coefficient of determination)
+        # calculating and logging R² (coefficient of determination)
         r2 = R2Evaluation().calculate_score(y_test, y_pred)
+        mlflow.log_metric("r2", r2)
 
-        # Calculate MAE (Mean Absolute Error)
+        # calculating and logging MAE (Mean Absolute Error)
         mae = MAEEvaluation().calculate_score(y_test, y_pred)
-        
+        mlflow.log_metric("mae", mae)
+
         return rmse, r2, mae 
 
     except Exception as e:
-        # Log any errors that occur during model evaluation
+        # logging any errors that occur during model evaluation
         logging.error(f"Error while testing {config.name} model: {e}")
         raise e
