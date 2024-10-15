@@ -83,7 +83,7 @@ To run this project, follow these steps:
 ### Clone the repository:
 
 ```bash
-git clone https://github.com/TanzimJarif/relative-humidity-forecasting.git
+git clone https://github.com/TanzimJarif/relative-humidity-forecasting-mlops.git
 ```
 
 ```bash
