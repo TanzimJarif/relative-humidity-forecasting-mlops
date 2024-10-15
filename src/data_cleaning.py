@@ -27,7 +27,7 @@ class CleanData:
         self.y = []
 
 
-    def drop_nan(self, verbose: boolean = false) -> None:
+    def drop_nan(self, verbose: bool = False) -> None:
         """
         Drops rows with any NaN values in the DataFrame.
         """
