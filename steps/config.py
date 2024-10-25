@@ -28,3 +28,9 @@ class DataConfig(BaseParameters):
     Dataset Configuration
     """
     data_path: str = "D:\Projects\\relative-humidity-forecasting-mlops\data\Met dataset - 2015-to-2022_12months.csv"
+
+class DeploymentTriggerConfig(BaseParameters):
+    """
+    Deployment Trigger Configuration
+    """
+    min_accuracy: float = 0.5
